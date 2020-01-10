@@ -1,26 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import { generateMenus } from './actions'
+import { Layout, Menu, Icon } from 'antd';
+import { withRouter } from "react-router-dom";
+import { createStore } from 'redux'
+import reducers from './reducers'
+import './App.css'
 
-function App() {
+const { Header, Sider, Content } = Layout;
+const store = createStore(reducers);
+function App(props) {
+  store.dispatch(generateMenus())
+  const [collapsed, setCollapsed] = useState(false);
+  // useEffect(() => router.push('/dashboard'), []);
+  function handleLink(item) {
+    const path = '/' + item.keyPath.reverse().join('/').toLowerCase();
+    if (props.location.pathname === path) {
+      return
+    }
+    props.history.push(path)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <Layout className={'container'}>
+        <Sider trigger={null} collapsible collapsed={collapsed}>
+          <div className={'logo'} />
+          <Menu onClick={handleLink} theme="dark" mode="inline" defaultSelectedKeys={['Dashboard']}>
+            {
+              store.getState().menus
+            }
+          </Menu>
+        </Sider>
+        <Layout>
+          <Header style={{ background: '#fff', padding: 0 }}>
+            <Icon
+                className={'trigger'}
+                type={collapsed ? 'menu-unfold' : 'menu-fold'}
+                onClick={() => setCollapsed(!collapsed)}
+            />
+          </Header>
+          <Content
+              style={{
+                margin: '24px 16px',
+                padding: 24,
+                background: '#fff',
+                minHeight: 280,
+              }}
+          >
+            {props.children}
+          </Content>
+        </Layout>
+      </Layout>);
 }
 
-export default App;
+export default withRouter(App);
