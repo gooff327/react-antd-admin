@@ -1,21 +1,83 @@
 .trigger {
-  font-size: 18px;
-  line-height: 64px;
-  padding: 0 24px;
-  cursor: pointer;
-  transition: color 0.3s;
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color 0.3s;
 }
 
 .trigger:hover {
-  color: #1890ff;
+    color: #1890ff;
 }
 
 .logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px;
+    color: rgb(26, 182, 126);
+    line-height: 32px;
+    font-weight: bold;
+    text-align: center;
 }
 
+.logo .logo-icon {
+    color: #e96f81;
+    padding-right: 2px;
+}
+
+
 .container {
-  height: 100%;
+    height: 100%;
+}
+
+.ant-layout-header {
+    position: relative;
+}
+
+.ant-breadcrumb {
+    line-height: 60px !important;
+    width: 80%;
+    position: absolute;
+    top: 0;
+    left: 66px;
+}
+
+.header-right-wrapper {
+    position: absolute !important;
+    right: 0;
+    top: 0;
+}
+
+.avatar {
+    margin-right: 20px !important;
+}
+
+.ant-badge {
+    margin-right: 20px !important;
+}
+
+.ant-badge:hover {
+    animation: scale_animate .5s;
+    animation-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);
+}
+
+.anticon:hover {
+    color: #42b983;
+    cursor: pointer;
+}
+
+
+@keyframes scale_animate {
+    0% {
+        transform: scale(1)
+    }
+    20% {
+        transform: scale(0.8)
+    }
+    70% {
+        transform: scale(1.6)
+    }
+    100% {
+        transform: scale(1)
+    }
 }
