@@ -54,6 +54,11 @@
 
 .ant-badge {
     margin-right: 20px !important;
+    .anticon:hover {
+        color: #42b983;
+        cursor: pointer;
+    }
+
 }
 
 .ant-badge:hover {
@@ -61,10 +66,6 @@
     animation-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);
 }
 
-.anticon:hover {
-    color: #42b983;
-    cursor: pointer;
-}
 
 
 @keyframes scale_animate {

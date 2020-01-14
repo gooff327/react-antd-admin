@@ -4,7 +4,7 @@ import {Avatar, Badge, Breadcrumb, Icon, Layout, Menu, Popover} from 'antd';
 import {withRouter} from "react-router-dom";
 import {createStore} from 'redux'
 import reducers from './reducers'
-import './App.css'
+import './App.scss'
 
 const {Header, Sider, Content} = Layout;
 const store = createStore(reducers);
