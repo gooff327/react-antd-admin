@@ -170,7 +170,7 @@ export default function (props) {
 
     return (
         <section className="dashboard-wrapper">
-            <Row>
+            <Row className="row-top">
                 <Col className="wrapper" lg={6} md={6} sm={12} xl={6} xs={12}>
                     <Tooltip mouseEnterDelay={0.5} title="Stars of ant-design-vue">
                         <div onClick={() => jumpToAntdRepo} className="block-wrapper">
@@ -204,13 +204,13 @@ export default function (props) {
                     </Tooltip>
                 </Col>
             </Row>
-            <Row>
+            <Row className="row-mid">
                 <Col className="chart-wrapper" span={24}>
                     <canvas className="line-chart" style={{position: 'relative', height: '60vh', width: '95%'}}
                             ref={lineChart}/>
                 </Col>
             </Row>
-            <Row>
+            <Row className="row-bottom">
                 <Col className="chart-wrapper" span={6}>
                     <canvas className="bar-chart" style={{position: 'relative', height: '40vh', width: '95%'}}
                             ref={barChart}/>

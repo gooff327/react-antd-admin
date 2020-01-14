@@ -17,7 +17,9 @@
 
 .dashboard-wrapper {
   position: relative;
-
+  .row-top, .row-mid, .row-bottom {
+    padding: 6px 10px
+  }
   .wrapper {
     background-color: #fff;
     //padding: 10px;
