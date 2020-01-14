@@ -3,8 +3,7 @@ import {Col, Icon, Row, Tooltip} from "antd";
 import moment from "moment";
 import Chart from "chart.js"
 import api from "../../request";
-import './index.styl'
-
+import './index.scss'
 async function initData() {
     return await api.dashboard.repositoryInfos()
         // .then(res => {
@@ -28,7 +27,7 @@ export default function (props) {
     const radarChart = useRef(null);
     const pieChart = useRef(null);
     const bubbleChart = useRef(null);
-
+    console.log(chartInstance)
     useEffect( ()  => {
         initChart(lineChart, 'line');
         initChart(barChart, 'bar');
@@ -40,10 +39,9 @@ export default function (props) {
             setRepoData({stargazers_count, subscribers_count, forks, open_issues_count});
         });
         for (let instance in chartInstance) {
-            console.log(chartInstance)
             generateData(chartInstance[instance])
         }
-    });
+    }, [chartInstance]);
     function updateScale (chart, head) {
         chart.options.scales.xAxes[0].ticks.min = head.x;
     }
@@ -157,7 +155,8 @@ export default function (props) {
             scaleStartValue: 0,
             responsive: true
         };
-        chartInstance[ref.current.className] = new Chart(ctx, {
+        chartInstance[ref.current.className.split('-')[0]] = undefined;
+        chartInstance[ref.current.className.split('-')[0]] = new Chart(ctx, {
             type: type,
             data: salesData,
             options: Object.assign(options, config)
@@ -173,7 +172,7 @@ export default function (props) {
         <section className="dashboard-wrapper">
             <Row>
                 <Col className="wrapper" lg={6} md={6} sm={12} xl={6} xs={12}>
-                    <Tooltip title="Stars of ant-design-vue">
+                    <Tooltip mouseEnterDelay={0.5} title="Stars of ant-design-vue">
                         <div onClick={() => jumpToAntdRepo} className="block-wrapper">
                             <Icon className="star" type="star"/>
                             <span>{repoData.stargazers_count}</span>
@@ -181,7 +180,7 @@ export default function (props) {
                     </Tooltip>
                 </Col>
                 <Col className="wrapper" lg={6} md={6} sm={12} xl={6} xs={12}>
-                    <Tooltip title="Watch count of ant-design-vue">
+                    <Tooltip mouseEnterDelay={0.5} title="Watch count of ant-design-vue">
                         <div onClick={() => jumpToAntdRepo} className="block-wrapper">
                             <Icon className="eye" type="eye"/>
                             <span>{repoData.subscribers_count}</span>
@@ -189,7 +188,7 @@ export default function (props) {
                     </Tooltip>
                 </Col>
                 <Col className="wrapper" lg={6} md={6} sm={12} xl={6} xs={12}>
-                    <Tooltip title="Forks of ant-design-vue">
+                    <Tooltip mouseEnterDelay={0.5} title="Forks of ant-design-vue">
                         <div onClick={() => jumpToAntdRepo} className="block-wrapper">
                             <Icon className="save" type="save"/>
                             <span>{repoData.forks}</span>
@@ -197,7 +196,7 @@ export default function (props) {
                     </Tooltip>
                 </Col>
                 <Col className="wrapper" lg={6} md={6} sm={12} xl={6} xs={12}>
-                    <Tooltip title="Issues of ant-design-vue">
+                    <Tooltip mouseEnterDelay={0.5} title="Issues of ant-design-vue">
                         <div onClick={() => jumpToAntdRepo} className="block-wrapper">
                             <Icon className="message" type="message"/>
                             <span>{repoData.open_issues_count}</span>
@@ -206,25 +205,25 @@ export default function (props) {
                 </Col>
             </Row>
             <Row>
-                <Col className="wrapper" span={24}>
+                <Col className="chart-wrapper" span={24}>
                     <canvas className="line-chart" style={{position: 'relative', height: '60vh', width: '95%'}}
                             ref={lineChart}/>
                 </Col>
             </Row>
             <Row>
-                <Col className="wrapper" span={6}>
+                <Col className="chart-wrapper" span={6}>
                     <canvas className="bar-chart" style={{position: 'relative', height: '40vh', width: '95%'}}
                             ref={barChart}/>
                 </Col>
-                <Col className="wrapper" span={6}>
+                <Col className="chart-wrapper" span={6}>
                     <canvas className="bubble-chart" style={{position: 'relative', height: '40vh', width: '95%'}}
                             ref={bubbleChart}/>
                 </Col>
-                <Col className="wrapper" span={6}>
+                <Col className="chart-wrapper" span={6}>
                     <canvas className="pie-chart" style={{position: 'relative', height: '40vh', width: '95%'}}
                             ref={pieChart}/>
                 </Col>
-                <Col className="wrapper" span={6}>
+                <Col className="chart-wrapper" span={6}>
                     <canvas className="radar-chart" style={{position: 'relative', height: '40vh', width: '95%'}}
                             ref={radarChart}/>
                 </Col>

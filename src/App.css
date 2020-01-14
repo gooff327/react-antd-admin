@@ -81,3 +81,15 @@
         transform: scale(1)
     }
 }
+
+.content {
+    padding: 0 !important;
+    background-color: #f0f2f5 !important;
+    overflow: scroll;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+}
+
+.content::-webkit-scrollbar {
+    width: 0 !important;
+}
