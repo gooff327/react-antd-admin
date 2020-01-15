@@ -8,7 +8,7 @@ function generateRoutes(config, parentPath = '') {
       parentPath = config.path
     return <Route key={config.name} path={config.path}>{config.routes.map(item => generateRoutes(item, parentPath))}</Route>
   } else {
-    return <Route key={config.name} props={{icon: 'test'}} path={parentPath + config.path} component={config.component}/>
+    return <Route key={config.name} path={parentPath + config.path} component={config.component}/>
   }
 
 }
@@ -43,7 +43,6 @@ export default (state = {
         {
           name: 'Table',
           path: '/table',
-          component: require('../pages/table/index').default,
           meta: {
             icon: 'table',
             roles: [1, 2, 3, 4, 5, 6]
@@ -63,7 +62,6 @@ export default (state = {
         {
           name: 'Article',
           path: '/article',
-          component: require('../pages/article/index').default,
           meta: {
             icon: 'file-markdown',
             roles: [1, 2, 3, 4, 5, 6]
@@ -92,7 +90,6 @@ export default (state = {
         {
           name: 'Tool',
           path: '/tool',
-          component: require('../pages/tool/index').default,
           meta: {
             icon: 'tool',
             roles: [1, 2, 3, 4, 5, 6]

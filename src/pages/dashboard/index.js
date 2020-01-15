@@ -15,6 +15,7 @@ async function initData() {
     // })
 }
 export default function (props) {
+    console.log(props)
     const [repoData, setRepoData] = useState({
         stargazers_count: 0,
         subscribers_count: 0,
@@ -27,7 +28,6 @@ export default function (props) {
     const radarChart = useRef(null);
     const pieChart = useRef(null);
     const bubbleChart = useRef(null);
-    console.log(chartInstance)
     useEffect( ()  => {
         initChart(lineChart, 'line');
         initChart(barChart, 'bar');
@@ -155,8 +155,8 @@ export default function (props) {
             scaleStartValue: 0,
             responsive: true
         };
-        chartInstance[ref.current.className.split('-')[0]] = undefined;
-        chartInstance[ref.current.className.split('-')[0]] = new Chart(ctx, {
+        chartInstance[type] = undefined;
+        chartInstance[type] = new Chart(ctx, {
             type: type,
             data: salesData,
             options: Object.assign(options, config)
