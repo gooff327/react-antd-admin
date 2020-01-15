@@ -1,0 +1,14 @@
+.table-wrapper {
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 10px;
+  .toolbar {
+    & > strong {
+      margin: 4px 10px;
+      .ant-switch {
+        margin: 0 4px
+      }
+    }
+  }
+}
+

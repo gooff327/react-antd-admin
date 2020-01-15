@@ -6,13 +6,6 @@ import api from "../../request";
 import './index.scss'
 async function initData() {
     return await api.dashboard.repositoryInfos()
-        // .then(res => {
-        // this.stargazers_count = res.data.stargazers_count;
-        // this.subscribers_count = res.data.subscribers_count;
-        // this.forks = res.data.forks;
-        // this.open_issues_count = res.data.open_issues_count
-        // return res
-    // })
 }
 export default function (props) {
     console.log(props)
